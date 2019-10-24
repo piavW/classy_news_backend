@@ -1,0 +1,43 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/sverrir/projects/week8/classy_news_backend/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/sverrir/projects/week8/classy_news_backend/app/jobs/application_job.rb": [
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0
+      ],
+      "/home/sverrir/projects/week8/classy_news_backend/app/channels/application_cable/channel.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/sverrir/projects/week8/classy_news_backend/app/channels/application_cable/connection.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/sverrir/projects/week8/classy_news_backend/app/controllers/application_controller.rb": [
+        0,
+        0
+      ],
+      "/home/sverrir/projects/week8/classy_news_backend/app/mailers/application_mailer.rb": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "timestamp": 1571921346
+  }
+}
