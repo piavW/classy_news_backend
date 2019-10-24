@@ -1,2 +1,6 @@
-# classy_news_backend
-Newsrrom September 2019
+# Classy News Backend
+Newsroom Challenge September 2019
+
+
+
+
