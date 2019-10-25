@@ -8,7 +8,6 @@ RSpec.describe 'List articles', type: :request do
                                      author: 'CIA'
                                   }, headers: headers
       expect(response.status).to eq 200
-
     end
   end
 end
