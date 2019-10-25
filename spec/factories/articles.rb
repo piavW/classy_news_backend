@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :article do
-    title { "Trump Impeachment" }
-    content { "Orange douchebag goes down" }
-    author { "CIA" }
+    title { "TitleString" }
+    content { "ContentText" }
+    author { "AuthorString" }
   end
 end
