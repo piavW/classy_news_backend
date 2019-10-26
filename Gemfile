@@ -9,6 +9,7 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
 gem 'active_model_serializers'
+gem 'devise_token_auth'
 
 group :development, :test do
   gem 'pry-rails'
