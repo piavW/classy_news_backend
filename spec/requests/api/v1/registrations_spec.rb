@@ -51,5 +51,21 @@ RSpec.describe 'User Registration', type: :request do
       expect(response_json['errors']['email']).to eq ['has already been taken']
       expect(response.status).to eq 422
     end
+
+    it 'an already registered nickname' do
+      FactoryBot.create(:user, nickname: 'Luca',
+                               email: 'example@craftacademy.se',
+                               password: 'password',
+                               password_confirmation: 'password')
+
+      post '/api/v1/auth', params: { nickname: 'Luca',
+                                     email: 'example2@craftacademy.se',
+                                     password: 'password',
+                                     password_confirmation: 'password'
+                                  }, headers: headers
+      binding.pry
+      expect(response_json['errors']['nickname']).to eq ['already exists']
+      expect(response.status).to eq 422
+    end
   end
 end
