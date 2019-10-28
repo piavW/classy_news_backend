@@ -53,6 +53,7 @@ RSpec.describe 'User Registration', type: :request do
     end
 
     it 'an already registered nickname' do
+      expect {
       FactoryBot.create(:user, nickname: 'becca',
                                email: 'example@craftacademy.se',
                                password: 'password',
@@ -63,9 +64,7 @@ RSpec.describe 'User Registration', type: :request do
                                      password: 'password',
                                      password_confirmation: 'password'
                                   }, headers: headers
-                                  binding.pry
-      expect(response_json['errors']['nickname']).to eq ['already exists']
-      expect(response.status).to eq 422
+      }.to raise_error(ActiveRecord::RecordNotUnique)
     end
   end
 end
