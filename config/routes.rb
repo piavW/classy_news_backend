@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'articles/index'
   namespace :api do
     namespace :v1 do
-      resources :articles, only: [:index], constraints: { format: 'json' }
+      resources :articles, only: [:index, :create], constraints: { format: 'json' }
     end
 
     namespace :v1 do
