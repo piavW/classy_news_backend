@@ -38,7 +38,7 @@ RSpec.describe 'User Registration', type: :request do
     end
 
     it 'an already registered email' do
-      FactoryBot.create(:user, nickname: 'becca',
+      create(:user, nickname: 'becca',
                                email: 'example@craftacademy.se',
                                password: 'password',
                                password_confirmation: 'password')
@@ -54,7 +54,7 @@ RSpec.describe 'User Registration', type: :request do
 
     it 'an already registered nickname' do
       expect {
-      FactoryBot.create(:user, nickname: 'becca',
+      create(:user, nickname: 'becca',
                                email: 'example@craftacademy.se',
                                password: 'password',
                                password_confirmation: 'password')
