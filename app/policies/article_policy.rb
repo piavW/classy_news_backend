@@ -20,4 +20,8 @@ class ArticlePolicy < ApplicationPolicy
   def create?
     new?
   end  
+
+  def edit?
+    @user.journalist?
+  end
 end

@@ -19,6 +19,24 @@ class Api::V1::ArticlesController < ApplicationController
     end  
   end
 
+  def show
+    @article = Article.find(params[:id])
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    attach_image
+    if @article.update(article_params) && @article.image.attached?
+      render json: {message: 'Edit of article went well'}, status: 200
+    else
+      render_error_message(@article.errors.first.to_sentence, 400)
+    end
+  end
+  
   private
   def article_params
     params.permit(:title, :content, :author, keys: [:image])
