@@ -6,5 +6,6 @@ FactoryBot.define do
     country { "country" }
     password { "password" }
     password_confirmation { "password" }
+    role { "subscriber" }
   end
 end
