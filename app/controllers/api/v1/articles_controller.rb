@@ -1,4 +1,5 @@
 class Api::V1::ArticlesController < ApplicationController
+  before_action :authenticate_user!
   def index
     articles = Article.all
 
@@ -10,7 +11,10 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.create(article_params)
+    binding.pry
+
+    @article = Article.create(article_params.merge!(journalist: current_user))
+
     attach_image
     if @article.persisted? && @article.image.attached?
       render json: {message: 'Article was successfully created'}

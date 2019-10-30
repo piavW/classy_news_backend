@@ -42,8 +42,7 @@ ActiveRecord::Schema.define(version: 2019_10_30_132203) do
     t.string "author"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_articles_on_user_id"
+    t.integer "journalist_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,10 +74,10 @@ ActiveRecord::Schema.define(version: 2019_10_30_132203) do
     t.string "role", default: "subscriber"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["nickname"], name: "index_users_on_nickname", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "articles", "users"
 end

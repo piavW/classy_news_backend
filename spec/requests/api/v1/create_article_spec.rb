@@ -1,6 +1,8 @@
 RSpec.describe 'POST articles create ' do
-  describe 'User can post article successfully' do 
-    let(:headers) {{ HTTP_ACCEPT: "application/json" }}
+  describe 'Journalist can post article successfully' do 
+    let(:journalist) { create(:user, role: 'journalist')}
+    let(:credentials) { journalist.create_new_auth_token}
+    let(:headers) {{ HTTP_ACCEPT: "application/json" }.merge!(credentials)}
 
     before do
       post '/api/v1/articles', 
@@ -26,5 +28,12 @@ RSpec.describe 'POST articles create ' do
       article = Article.find_by(title: response.request.params['title'])
       expect(article.image.attached?).to eq true
     end
+  end
+
+  describe "Regular user can NOT post article" do 
+    let(:just_a_user) { create(:user, role: 'subscriber')}
+    let(:credentials) { just_a_user.create_new_auth_token}
+    let(:headers) {{ HTTP_ACCEPT: "application/json" }.merge!(credentials)}
+
   end
 end
