@@ -35,3 +35,8 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+Pundit::Matchers.configure do |config|
+  # config.user_alias = :account
+  end
+end
