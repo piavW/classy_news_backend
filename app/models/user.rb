@@ -6,15 +6,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  def journalist?
+  def journalist? 
     self.role == 'journalist'
+    has_many :articles
   end
 
   def subscriber?
     self.role == 'subscriber'
-  end
-
-  def editor?
-    self.role == 'editor'
   end
 end

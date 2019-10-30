@@ -19,4 +19,8 @@ RSpec.describe Article, type: :model do
       expect(create(:article)).to be_valid 
     end
   end
+  
+  it 'Should have a journalist' do
+    should belong_to(:journalist)
+  end
 end
