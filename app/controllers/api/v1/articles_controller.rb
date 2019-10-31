@@ -51,6 +51,7 @@ class Api::V1::ArticlesController < ApplicationController
 
   def attach_image
     if params['image'] && params['image'].present?
+      binding.pry
       DecodeService.attach_image(params['image'], @article.image)
     end
   end
