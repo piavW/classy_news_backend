@@ -6,7 +6,7 @@ RSpec.describe 'GET articles index' do
       get '/api/v1/articles'
     end
 
-    it 'returns 2 articles' do      
+    it 'returns 2 articles' do 
       expect(response_json['articles'].count).to eq 2
     end
 
