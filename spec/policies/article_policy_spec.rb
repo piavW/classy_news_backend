@@ -21,8 +21,8 @@ end
 
 describe ArticlePolicy do
   subject { described_class.new(user, article) }
-  let(:user) { User.create(role: 'journalist') }
-  let(:article) { Article.create }
+  let(:user) { create(:user, role: 'journalist') }
+  let(:article) { create(:article) }
 
   context 'user is a journalist' do
     it { is_expected.to permit_new_and_create_actions }
