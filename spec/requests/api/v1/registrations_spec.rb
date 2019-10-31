@@ -3,7 +3,7 @@ RSpec.describe 'User Registration', type: :request do
 
   context 'with valid credentials' do
     it 'returns a user and token' do
-      post '/api/v1/auth', params: { nickname: 'craft',
+      post '/auth', params: { nickname: 'craft',
                                      email: 'example@craftacademy.se',
                                      password: 'password',
                                      password_confirmation: 'password'
@@ -16,7 +16,7 @@ RSpec.describe 'User Registration', type: :request do
 
   context 'returns an error message when user submits' do
     it 'non-matching password confirmation' do
-      post '/api/v1/auth', params: { nickname: 'luca',
+      post '/auth', params: { nickname: 'luca',
                                      email: 'example@craftacademy.se',
                                      password: 'password',
                                      password_confirmation: 'wrong_password'
@@ -27,7 +27,7 @@ RSpec.describe 'User Registration', type: :request do
     end
 
     it 'an invalid email address' do
-      post '/api/v1/auth', params: { nickname: 'nickname',
+      post '/auth', params: { nickname: 'nickname',
                                      email: 'example@craft',
                                      password: 'password',
                                      password_confirmation: 'password'
@@ -43,7 +43,7 @@ RSpec.describe 'User Registration', type: :request do
                                password: 'password',
                                password_confirmation: 'password')
 
-      post '/api/v1/auth', params: { nickname: 'faraz',
+      post '/auth', params: { nickname: 'faraz',
                                      email: 'example@craftacademy.se',
                                      password: 'password',
                                      password_confirmation: 'password'
@@ -59,7 +59,7 @@ RSpec.describe 'User Registration', type: :request do
                                password: 'password',
                                password_confirmation: 'password')
 
-      post '/api/v1/auth', params: { nickname: 'becca',
+      post '/auth', params: { nickname: 'becca',
                                      email: 'example2@craftacademy.se',
                                      password: 'password',
                                      password_confirmation: 'password'

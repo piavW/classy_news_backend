@@ -2,9 +2,9 @@ RSpec.describe 'Sessions', type: :request do
   let(:user) { FactoryBot.create(:user) }
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
 
-  describe 'POST /api/v1/auth/sign_in' do
+  describe 'POST /auth/sign_in' do
     it 'valid credentials returns user' do
-      post '/api/v1/auth/sign_in', params: { email: user.email,
+      post '/auth/sign_in', params: { email: user.email,
                                              password: user.password
                                           }, headers: headers
 
@@ -20,7 +20,7 @@ RSpec.describe 'Sessions', type: :request do
     end
 
     it 'invalid password returns error message' do
-      post '/api/v1/auth/sign_in', params: { email: user.email,
+      post '/auth/sign_in', params: { email: user.email,
                                              password: 'wrong_password'
                                           }, headers: headers
 
@@ -31,7 +31,7 @@ RSpec.describe 'Sessions', type: :request do
     end
 
     it 'invalid email returns error message' do
-      post '/api/v1/auth/sign_in', params: { email: 'wrong@email.com',
+      post '/auth/sign_in', params: { email: 'wrong@email.com',
                                              password: user.password
                                           }, headers: headers
 

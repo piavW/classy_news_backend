@@ -1,7 +1,7 @@
 RSpec.describe 'GET articles index' do
   describe 'lists a collection of articles' do
     let!(:articles) { 2.times { create(:article) } }
-
+   
     before do
       get '/api/v1/articles'
     end
