@@ -21,6 +21,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'coveralls', require: false
   gem 'pundit-matchers', '~> 1.6.0'
+  gem 'faker'
 end
 
 group :development do
