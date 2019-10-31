@@ -23,4 +23,15 @@ RSpec.describe Article, type: :model do
   it 'Should have a journalist' do
     should belong_to(:journalist)
   end
+
+  describe 'Image attachment' do
+    let(:image) { File.open(fixture_path + '/testimage.png') }
+    
+    it 'can be attached to article' do 
+      subject.image.attach(io: image, 
+                          filename: 'attachment_1.png',
+                          content_type: 'image/png')
+      expect(subject.image).to be_attached
+    end
+  end 
 end
