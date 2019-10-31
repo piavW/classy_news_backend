@@ -10,6 +10,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
 gem 'active_model_serializers'
 gem 'devise_token_auth'
+gem 'pundit', '~> 1.1'
+
 
 group :development, :test do
   gem 'pry-rails'
@@ -18,6 +20,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_bot_rails'
   gem 'coveralls', require: false
+  gem 'pundit-matchers', '~> 1.6.0'
+  gem 'faker'
 end
 
 group :development do
