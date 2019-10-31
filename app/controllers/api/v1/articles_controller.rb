@@ -1,5 +1,5 @@
 class Api::V1::ArticlesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :index
   def index
     articles = Article.all
 
@@ -51,7 +51,6 @@ class Api::V1::ArticlesController < ApplicationController
 
   def attach_image
     if params['image'] && params['image'].present?
-      binding.pry
       DecodeService.attach_image(params['image'], @article.image)
     end
   end

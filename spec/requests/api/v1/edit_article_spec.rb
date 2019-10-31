@@ -1,7 +1,7 @@
 RSpec.describe 'PUT edited article ' do
   describe 'User can edit article successfully' do 
     let(:article) { create(:article) }
-    let(:journalist) { create(:user, role: 'journalist', email: 'hello@gmail.com', nickname: 'Faraz')}
+    let(:journalist) { create(:user, role: 'journalist')}
     let(:credentials) { journalist.create_new_auth_token}
     let(:headers) {{ HTTP_ACCEPT: "application/json" }.merge!(credentials)}
   
