@@ -17,7 +17,7 @@ class ArticlePolicy < ApplicationPolicy
     @user.journalist?
   end
 
-  def edit?
+  def update?
     @user.journalist?
   end
 end
