@@ -11,19 +11,15 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def create
-    if !current_user.journalist? 
-      render json: {}, status: 422 
-    else
+    authorize Article.create
+    @article = Article.create(article_params.merge!(journalist: current_user))
 
-      @article = Article.create(article_params.merge!(journalist: current_user))
-
-      attach_image
-      if @article.persisted? && @article.image.attached?
-        render json: {message: 'Article was successfully created'}
-      else 
-        render_error_message(@article.errors.first.to_sentence, 400)
-      end 
-    end 
+    attach_image
+    if @article.persisted? && @article.image.attached?
+      render json: {message: 'Article was successfully created'}
+    else 
+      render_error_message(@article.errors.first.to_sentence, 400)
+    end   
   end
 
   def show

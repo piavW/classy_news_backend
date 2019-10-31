@@ -51,8 +51,8 @@ RSpec.describe 'POST articles create ' do
       headers: headers
     end
  
-    it 'returns a 422 response' do
-      expect(response.status).to eq 422
+    it 'returns a 401 response' do
+      expect(response.status).to eq 401
     end
   end
 end
