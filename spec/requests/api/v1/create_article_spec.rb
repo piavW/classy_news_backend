@@ -54,5 +54,9 @@ RSpec.describe 'POST articles create ' do
     it 'returns a 401 response' do
       expect(response.status).to eq 401
     end
+    
+    it 'gives error message' do
+      expect(response_json['error']).to eq "You are not authorized!"
+    end
   end
 end

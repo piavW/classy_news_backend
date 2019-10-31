@@ -2,7 +2,6 @@ class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
   include Pundit
 
-
   before_action :configure_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -16,6 +15,6 @@ class ApplicationController < ActionController::API
   end
 
   def user_not_authorized
-    render json: {error: "Hey! You can't do that!"}, status: :unauthorized
+    render json: {error: "You are not authorized!"}, status: :unauthorized
   end
 end
