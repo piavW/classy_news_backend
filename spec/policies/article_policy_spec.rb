@@ -8,12 +8,12 @@ describe ArticlePolicy do
   end
 
   context 'user is a subscriber' do
-    let(:user) { User.create }
+    let(:user) { create(:user) }
     it { is_expected.to forbid_new_and_create_actions }
   end
 
   context 'user of role subscriber cannot edit or update an article' do
-    let(:user) { User.create }
+    let(:user) { create(:user) }
 
     it { is_expected.to forbid_edit_and_update_actions }
   end

@@ -13,13 +13,9 @@ class ArticlePolicy < ApplicationPolicy
     true
   end
 
-  def new?
+  def create?
     @user.journalist?
   end
-
-  def create?
-    new?
-  end  
 
   def edit?
     @user.journalist?

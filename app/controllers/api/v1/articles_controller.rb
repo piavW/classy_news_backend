@@ -28,12 +28,15 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def edit
+    authorize Article.edit
     @article = Article.find(params[:id])
   end
 
   def update
+    authorize Article.update
     @article = Article.find(params[:id])
     attach_image
+    
     if @article.update(article_params) && @article.image.attached?
       render json: {message: 'Edit of article went well'}, status: 200
     else
