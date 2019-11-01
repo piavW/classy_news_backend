@@ -1,5 +1,5 @@
 class Api::V1::ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, except: [:index, :show]
   
   def index
     articles = Article.all
@@ -24,8 +24,12 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
-    authorize @article
+    if Article.exists?(id: params[:id]) 
+      @article = Article.find(params[:id])
+      render json: @article , serializer: Articles::IndexSerializer
+    else
+      render_error_message('The article could not be found', 404)
+    end
   end
 
   def update

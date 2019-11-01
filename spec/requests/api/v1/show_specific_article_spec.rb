@@ -1,19 +1,16 @@
 RSpec.describe 'GET specific article' do
   describe 'subscriber can view a specific article' do
     
-    let(:user_subscriber) { create(:user, role: 'subscriber') }
-    let(:credentials) { user_subscriber.create_new_auth_token}
-    let(:headers) {{ HTTP_ACCEPT: "application/json" }.merge!(credentials)}
+    let(:headers) {{ HTTP_ACCEPT: "application/json" }}
     let(:article) { create(:article) }
 
     before do      
-      get "/api/v1/articles/#{article.id}", headers: headers
-
+      get "/api/v1/articles/#{article.id}"
+      
     end
 
     it 'returns one article' do
-      binding.pry
-      expect(response_json['article'].count).to eq 1
+      expect(response_json.count).to eq 1
     end
 
     it 'returns status 200' do
@@ -21,17 +18,15 @@ RSpec.describe 'GET specific article' do
     end
 
     it 'returns the correct data' do
-      article_date = "#{Article.created_at.strftime("%d").to_i.ordinalize} #{Article.created_at.strftime("%B, %Y")}"
 
-      expected_response = [
-        {
-          "id"=>Article.id,
-          "title"=>Article.title,
-          "content"=>Article.content,
-          "author"=>Article.author,
-          "publish_date"=>article_date,
-          "created_at"=>Article.created_at.strftime("%F")
-        }]
+      expected_response = {
+          "id"=>article.id,
+          "title"=>article.title,
+          "content"=>article.content,
+          "author"=>article.author,
+          "publish_date"=>"#{article.created_at.strftime("%d").to_i.ordinalize} #{article.created_at.strftime("%B, %Y")}",
+          "created_at"=>article.created_at.strftime("%F")
+        }
         expect(response_json['article']).to eq(expected_response)
     end
   end
@@ -40,7 +35,7 @@ RSpec.describe 'GET specific article' do
     let(:article) { create(:article) }
 
     before do
-      get "/api/v1/article/#{article.id}"
+      get "/api/v1/articles/#{article.id}"
     end
 
     it 'gives error status when visitor tries to view article' do
