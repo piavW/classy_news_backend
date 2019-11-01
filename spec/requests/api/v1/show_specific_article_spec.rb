@@ -1,13 +1,18 @@
 RSpec.describe 'GET specific article' do
   describe 'subscriber can view a specific article' do
-    let(:article) { create(:article) }
+    
     let(:user_subscriber) { create(:user, role: 'subscriber') }
+    let(:credentials) { user_subscriber.create_new_auth_token}
+    let(:headers) {{ HTTP_ACCEPT: "application/json" }.merge!(credentials)}
+    let(:article) { create(:article) }
 
-    before do
-      get "/api/v1/article/#{article.id}"
+    before do      
+      get "/api/v1/articles/#{article.id}", headers: headers
+
     end
 
     it 'returns one article' do
+      binding.pry
       expect(response_json['article'].count).to eq 1
     end
 
