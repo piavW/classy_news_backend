@@ -7,7 +7,7 @@ describe ArticlePolicy do
     it { is_expected.to permit_actions [:show, :index] }
   end
 
-  context 'user is a subscriber' do
+  context 'user cannot create new articles' do
     let(:user) { create(:user) }
     it { is_expected.to forbid_new_and_create_actions }
   end
