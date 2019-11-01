@@ -3,7 +3,7 @@ describe ArticlePolicy do
   let(:article) { create(:article) }
 
   context 'user is a subscriber' do
-    let(:user) { nil }
+    let(:user) { create(:user) }
     it { is_expected.to permit_actions [:show, :index] }
   end
 
