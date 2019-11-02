@@ -24,8 +24,7 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def show
-    if Article.exists?(id: params[:id]) 
-      @article = Article.find(params[:id])
+    if @article = Article.find(params[:id])
       authorize @article
       render json: @article, serializer: Articles::IndexSerializer
     else
