@@ -1,4 +1,4 @@
-class Api::V0::SubscriptionsController < ApplicationController
+class Api::V1::SubscriptionsController < ApplicationController
   before_action :authenticate_user!
 
   def create
@@ -13,7 +13,7 @@ class Api::V0::SubscriptionsController < ApplicationController
           Stripe::Charge.create(
             customer: customer.id,
             amount: 10_000,
-            description: 'Gnosis Yearly Subscription',
+            description: 'Classy News Yearly Subscription',
             currency: 'sek'
           )
   
