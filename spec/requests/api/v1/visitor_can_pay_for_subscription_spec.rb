@@ -12,8 +12,8 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
   describe 'Payment posts successfully' do
     before do
       post '/api/v1/subscriptions', 
-      headers: headers, 
-      params: { stripeToken: StripeMock.generate_card_token }
+      params: { stripeToken: StripeMock.generate_card_token },
+      headers: headers
     end
 
     it 'return status 200' do
@@ -21,7 +21,7 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
     end
 
     it 'returns success message' do
-      expect(response_json['message']).to eq 'Your payment was successful'
+      expect(response_json).to eq 'Your payment was successful'
     end
   end
 
@@ -29,8 +29,8 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
     describe 'because payment lacks stripe token' do
       before do
         post '/api/v1/subscriptions',
-        headers: headers,
-        params: { strikeToken: nil }
+        params: { strikeToken: nil },
+        headers: headers
       end
 
       it 'returns status 402' do
@@ -38,15 +38,15 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
       end
 
       it 'returns error message' do
-        expect(response_json['errors']).to eq 'No Strike Token detected'
+        expect(response_json['errors']).to eq 'No stripe token detected'
       end
     end
 
     describe 'because payment had invalid stripe token' do
       before do
         post '/api/v1/subscriptions',
-        headers: headers,
-        params: { stripeToken: 'invalid_token' }
+        params: { stripeToken: 'invalid_token' },
+        headers: headers
       end
 
       it 'returns status 402' do
