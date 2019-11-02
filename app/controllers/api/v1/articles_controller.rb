@@ -1,6 +1,6 @@
 class Api::V1::ArticlesController < ApplicationController
   before_action :authenticate_user!, except: :index
-  
+
   def index
     articles = Article.all
 
@@ -40,6 +40,7 @@ class Api::V1::ArticlesController < ApplicationController
   end
   
   private
+
   def article_params
     params.permit(:title, :content, :author, keys: [:image])
   end
