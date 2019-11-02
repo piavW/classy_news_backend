@@ -1,4 +1,4 @@
-require 'stripe-mock'
+require 'stripe_mock'
 
 RSpec.describe Api::V1::SubscriptionsController, type: :request do
   let(:stripe_helper) { StripeMock.create_test_helper }
@@ -46,7 +46,7 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
       before do
         post '/api/v1/subscriptions',
         headers: headers,
-        params { stripeToken: 'invalid_token' }
+        params: { stripeToken: 'invalid_token' }
       end
 
       it 'returns status 402' do
