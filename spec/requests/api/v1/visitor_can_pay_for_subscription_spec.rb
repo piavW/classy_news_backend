@@ -21,7 +21,7 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
     end
 
     it 'returns success message' do
-      expect(response_json).to eq 'Your payment was successful'
+      expect(response_json['message']).to eq 'Your payment was successful'
     end
   end
 

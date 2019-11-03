@@ -18,8 +18,8 @@ class Api::V1::SubscriptionsController < ApplicationController
           )
   
         if charge.paid?
-          current_user.update_attribute(:subscriber, true)
-          render json: { message: 'Payment successful' }
+          # current_user.update_attribute(:subscriber, true) - can be used to update another attribute
+          render json: { message: 'Your payment was successful' }
         else    
           render_error(charge.errors)
         end
@@ -30,7 +30,6 @@ class Api::V1::SubscriptionsController < ApplicationController
     else
       render_error('No stripe token detected')
     end
-    
   end
 
   def new; end
@@ -38,8 +37,6 @@ class Api::V1::SubscriptionsController < ApplicationController
   private
 
   def render_error(message)
-    render json: { 
-      errors: message
-    }, status: 402
+    render json: { errors: message }, status: 402
   end
 end
