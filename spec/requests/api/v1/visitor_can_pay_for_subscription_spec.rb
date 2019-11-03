@@ -5,7 +5,8 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
 
   before(:each) { StripeMock.start }
   after(:each) { StripeMock.stop }
-  let(:new_subscriber) { create(:user, role: 'subscriber') }
+  let(:new_subscriber) { create(:user) }
+
   let(:credentials) { new_subscriber.create_new_auth_token }
   let(:headers) { { HTTP_ACCEPT: 'application/json' }.merge!(credentials) }
 
@@ -23,6 +24,11 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
     it 'returns success message' do
       expect(response_json['message']).to eq 'Your payment was successful'
     end
+
+    it 'user has the role subscriber?' do
+      # binding.pry
+      expect(new_subscriber.subscriber?).to eq true
+    end
   end
 
   describe 'Payment is declined' do
@@ -39,6 +45,10 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
 
       it 'returns error message' do
         expect(response_json['errors']).to eq 'No stripe token detected'
+      end
+
+      it 'user does not have the role of subscriber' do
+        expect(new_subscriber.subscriber?).to eq false
       end
     end
 

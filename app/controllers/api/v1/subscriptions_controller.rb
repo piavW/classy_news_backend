@@ -18,7 +18,7 @@ class Api::V1::SubscriptionsController < ApplicationController
           )
   
         if charge.paid?
-          # current_user.update_attribute(:subscriber, true) - can be used to update another attribute
+          current_user.update_attribute(:role, 'subscriber')
           render json: { message: 'Your payment was successful' }
         else    
           render_error(charge.errors)
