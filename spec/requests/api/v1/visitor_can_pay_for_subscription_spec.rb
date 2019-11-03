@@ -25,6 +25,8 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
     end
 
     it 'user has the role subscriber?' do
+      # new_subscriber.update_attribute(:role, 'subscriber') 
+      #does the controllers update_attribute method not affect factory-/test-users?
       expect(new_subscriber.subscriber?).to eq true
     end
   end
