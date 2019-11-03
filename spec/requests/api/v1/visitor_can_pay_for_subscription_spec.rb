@@ -2,11 +2,10 @@ require 'stripe_mock'
 
 RSpec.describe Api::V1::SubscriptionsController, type: :request do
   let(:stripe_helper) { StripeMock.create_test_helper }
-
   before(:each) { StripeMock.start }
   after(:each) { StripeMock.stop }
-  let(:new_subscriber) { create(:user) }
 
+  let(:new_subscriber) { create(:user) }
   let(:credentials) { new_subscriber.create_new_auth_token }
   let(:headers) { { HTTP_ACCEPT: 'application/json' }.merge!(credentials) }
 
@@ -26,7 +25,6 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
     end
 
     it 'user has the role subscriber?' do
-      # binding.pry
       expect(new_subscriber.subscriber?).to eq true
     end
   end
