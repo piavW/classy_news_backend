@@ -17,7 +17,6 @@ Bundler.require(*Rails.groups)
 module ClassyNewsBackend
   class Application < Rails::Application
     config.load_defaults 6.0
-
     config.api_only = true
     config.middleware.insert_before 0, Rack::Cors do
       allow do
@@ -29,5 +28,7 @@ module ClassyNewsBackend
           max_age: 0
       end
     end
+    config.stripe.publishable_key = Rails.application.credentials.stripe[:publishable_key]
+    config.stripe.secret_key = Rails.application.credentials.stripe[:secret_key]
   end
 end

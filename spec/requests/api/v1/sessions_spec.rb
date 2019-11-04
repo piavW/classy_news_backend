@@ -1,5 +1,5 @@
 RSpec.describe 'Sessions', type: :request do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { create(:user, role: 'subscriber') }
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
 
   describe 'POST /auth/sign_in' do

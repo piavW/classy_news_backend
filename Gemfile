@@ -11,6 +11,7 @@ gem 'rack-cors'
 gem 'active_model_serializers'
 gem 'devise_token_auth'
 gem 'pundit', '~> 1.1'
+gem 'stripe-rails'
 
 group :development, :test do
   gem 'pry-rails'
@@ -21,6 +22,7 @@ group :development, :test do
   gem 'coveralls', require: false
   gem 'pundit-matchers', '~> 1.6.0'
   gem 'faker'
+  gem 'stripe-ruby-mock', '~> 2.5', require: 'stripe_mock'
 end
 
 group :development do
