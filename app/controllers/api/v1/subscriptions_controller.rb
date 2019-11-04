@@ -32,8 +32,6 @@ class Api::V1::SubscriptionsController < ApplicationController
     end
   end
 
-  def new; end
-
   private
 
   def render_error(message)
