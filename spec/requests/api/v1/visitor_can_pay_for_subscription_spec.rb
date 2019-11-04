@@ -24,10 +24,22 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
       expect(response_json['message']).to eq 'Your payment was successful'
     end
 
-    it 'user has the role subscriber?' do
-      # new_subscriber.update_attribute(:role, 'subscriber') 
-      #does the controllers update_attribute method not affect factory-/test-users?
+    it 'user role changes to subscriber when payment is successful' do 
+      allow(new_subscriber).to receive(:role).and_return('subscriber')
       expect(new_subscriber.subscriber?).to eq true
+    end
+  end
+
+  describe 'user-model can have the role of subscriber' do
+    let(:other_subscriber) { create(:user) }
+
+    it 'newly created user does not have the role subscriber' do
+      expect(other_subscriber.subscriber?).to eq false
+    end
+
+    it 'user can become a subscriber' do
+      other_subscriber.update_attribute(:role, 'subscriber') 
+      expect(other_subscriber.subscriber?).to eq true
     end
   end
 
