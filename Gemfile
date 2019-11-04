@@ -12,7 +12,6 @@ gem 'active_model_serializers'
 gem 'devise_token_auth'
 gem 'pundit', '~> 1.1'
 
-
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'

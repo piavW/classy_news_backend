@@ -10,7 +10,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    @user.subscriber? || @user.journalist?
   end
 
   def create?
