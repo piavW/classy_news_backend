@@ -25,21 +25,8 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
     end
 
     it 'user role changes to subscriber when payment is successful' do 
-      allow(new_subscriber).to receive(:role).and_return('subscriber')
+      new_subscriber.reload
       expect(new_subscriber.subscriber?).to eq true
-    end
-  end
-
-  describe 'user-model can have the role of subscriber' do
-    let(:other_subscriber) { create(:user) }
-
-    it 'newly created user does not have the role subscriber' do
-      expect(other_subscriber.subscriber?).to eq false
-    end
-
-    it 'user can become a subscriber' do
-      other_subscriber.update_attribute(:role, 'subscriber') 
-      expect(other_subscriber.subscriber?).to eq true
     end
   end
 
@@ -47,7 +34,7 @@ RSpec.describe Api::V1::SubscriptionsController, type: :request do
     describe 'because payment lacks stripe token' do
       before do
         post '/api/v1/subscriptions',
-        params: { strikeToken: nil },
+        params: { stripeToken: nil },
         headers: headers
       end
 
