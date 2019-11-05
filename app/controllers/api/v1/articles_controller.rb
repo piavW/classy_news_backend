@@ -1,5 +1,5 @@
 class Api::V1::ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :create]
   
   def index
     articles = Article.all
@@ -14,8 +14,8 @@ class Api::V1::ArticlesController < ApplicationController
   def create
     authorize Article.create
     @article = Article.create(article_params.merge!(journalist: current_user))
-
     attach_image
+    binding.pry
     if @article.persisted? && @article.image.attached?
       render json: {message: 'Article was successfully created'}
     else 
