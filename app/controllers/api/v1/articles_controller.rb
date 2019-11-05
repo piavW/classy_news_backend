@@ -15,7 +15,6 @@ class Api::V1::ArticlesController < ApplicationController
     authorize Article.create
     @article = Article.create(article_params.merge!(journalist: current_user))
     attach_image
-    binding.pry
     if @article.persisted? && @article.image.attached?
       render json: {message: 'Article was successfully created'}
     else 
